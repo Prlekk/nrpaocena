@@ -1,0 +1,14 @@
+rezerviraj stevec = 2;
+
+funkcija fibonaci(a, b) {
+    stevec = stevec + 1
+    ce ( a + b <= 100 ) {
+        izpisi(stevec, ": " ,a + b)
+        fibonaci(b, a + b)
+    }
+}
+
+izpisi(1, ": ", 0)
+izpisi(2, ": ", 1)
+
+fibonaci(0, 1)
