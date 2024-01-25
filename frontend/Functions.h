@@ -14,6 +14,7 @@
 #include <chrono>
 #include <ctime>
 #include <cmath>
+#include <random>
 
 enum NodeType {
     // Statements
@@ -87,11 +88,11 @@ bool isBinaryOperator(char c);
 char toUpperCase(char c);
 char toLowerCase(char c);
 bool isAlpha(char c);
-bool isInt(char c);
+bool isNumber(char c);
 std::string toUpperCase(std::string& str);
 std::string toLowerCase(std::string& str);
 bool isAlpha(std::string& str);
-bool isInt(std::string& str);
+bool isNumber(std::string& str);
 
 bool isSkippable(char c);
 std::string tokenTypeToString(Token token);

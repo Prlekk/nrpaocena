@@ -66,8 +66,10 @@ class ObjectValue : public RuntimeValue {
     std::map<std::string, RuntimeValue*> properties;
 };
 
-RuntimeValue* MK_NUMBER(float n = 0.0);
-RuntimeValue* MK_BOOL(bool b = true);
 RuntimeValue* MK_NULL();
+RuntimeValue* MK_BOOL(bool b = true);
+RuntimeValue* MK_NUMBER(float n = 0.0);
+RuntimeValue* MK_STRING(std::string s);
+RuntimeValue* MK_OBJECT(std::map<std::string, RuntimeValue*> obj);
 
 #endif

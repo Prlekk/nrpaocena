@@ -78,9 +78,9 @@ std::vector<Token> tokenize(std::string sourceCode) {
             }
         } else {
             // Check if a token is a number
-            if (isInt(src[0][0])) {
+            if (isNumber(src[0][0])) {
                 std::string num = "";
-                while (!src.empty() && !src[0].empty() && isInt(src[0][0])) {
+                while (!src.empty() && !src[0].empty() && isNumber(src[0][0])) {
                     num += src[0].front();
                     src.erase(src.begin());
                 }
@@ -129,7 +129,7 @@ std::vector<Token> tokenize(std::string sourceCode) {
     tokens.emplace_back(token("EndOfFile", TokenType::EndOfFile));
 
     // for (const auto& token : tokens) {
-    //     std::cout << "Token: " << tokenTypeToString(token.type) << " " << token.value << std::endl;
+    //     std::cout << "Token: " << tokenTypeToString(token.type) << " (" << token.value << ")" << std::endl;
     // }
 
     return tokens;

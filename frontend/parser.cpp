@@ -111,7 +111,6 @@ Statement* Parser::parseVariableDeclaration() {
             throw std::runtime_error("Constants must be initialized. No value provided.");
         }
         VariableDeclaration* dec = new VariableDeclaration(
-            NodeType::NODE_VARIABLEDECLARATION,
             this->parseExpression(),
             isConstant,
             identifier
@@ -120,7 +119,6 @@ Statement* Parser::parseVariableDeclaration() {
     }
     this->expect(Equals, "Expected equals sign following identifier in var declaration.");
     VariableDeclaration* declaration = new VariableDeclaration(
-        NodeType::NODE_VARIABLEDECLARATION,
         this->parseExpression(),
         isConstant,
         identifier
@@ -318,8 +316,7 @@ Expression* Parser::parseMemberExpression() {
             property = this->parseExpression();
             this->expect(CloseBracket, "Missing closing bracket in computed value.");
         }
-
-        object = new MemberExpression(object, property, computed);
+        object = dynamic_cast<Expression*>(new MemberExpression(object, property, computed));
     }
     return dynamic_cast<Expression*>(object);
     
@@ -397,7 +394,7 @@ void consoleLog(Program& program) {
                 // std::cout << *dynamic_cast<NumericLiteral*>(stmt);
                 break;
             case NODE_OBJECTLITERAL:
-                // // std::cout << *dynamic_cast<ObjectLiteral*>(stmt);
+                // std::cout << dynamic_cast<ObjectLiteral*>(stmt)->getKindName() << "\n";
                 break;
             case NODE_BINARYEXPRESSION:
                 // std::cout << *dynamic_cast<BinaryExpression*>(stmt);

@@ -76,8 +76,8 @@ bool isAlpha(char c) {
     return std::isalpha(c) != 0;
 }
 
-bool isInt(char c) {
-    return (c >= '0' && c <= '9');
+bool isNumber(char c) {
+    return (c >= '0' && c <= '9') || (c == '.');
 }
 
 std::string toUpperCase(std::string& str) {
@@ -105,16 +105,29 @@ bool isAlpha(const std::string& str) {
     return true;
 }
 
-bool isInt(std::string& str) {
+bool isNumber(std::string& str) {
     if (str.empty()) {
         return false;
     }
-    for (char c : str) {
-        if (!isInt(c)) {
-            return false;
+
+    int sign = 0;
+    if(str[0] == '-' || str[0] == '+') {
+        sign = 1;
+    }
+
+    bool decimal = false;
+
+    for(int i = sign; i < str.length(); i++) {
+        if(!isNumber(str[i])) {
+            if(str[i] == '.' && !decimal) {
+                decimal = true;
+            } else {
+                return false;
+            }
         }
     }
-    return true;
+
+    return str.length() > sign;
 }
 
 bool isSkippable(char c) {
@@ -309,6 +322,10 @@ std::string Statement::getKindName() const {
             return "ObjectLiteral";
         case NODE_IFEXPRESSION:
             return "IfExpression";
+        case NODE_CALLEXPRESSION:
+            return "CallExpression";
+        case NODE_MEMBEREXPRESSION:
+            return "MemberExpression";
         default:
             return "Unknown";
     }

@@ -73,6 +73,7 @@ ObjectValue::ObjectValue() {
     properties = std::map<std::string, RuntimeValue*>();
 }
 ObjectValue::ObjectValue(std::map<std::string, RuntimeValue*> p) {
+    type = VALUETYPE_OBJECT;
     properties = p;
 }
 
@@ -92,4 +93,8 @@ RuntimeValue* MK_BOOL(bool b) {
 
 RuntimeValue* MK_NULL() {
     return new NullValue();
+}
+
+RuntimeValue* MK_OBJECT(std::map<std::string, RuntimeValue*> obj) {
+    return new ObjectValue(obj);
 }

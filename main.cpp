@@ -1,17 +1,27 @@
 //#include "frontend/parser.h"
 #include "runtime/interpreter.h"
 
+// Prebere tekst iz datoteke
+// Vrne string v katerem se nahaja izvorna koda
+
 std::string readTextFile(const std::string& filename) {
+    // ifstream odpre datoteko
     std::ifstream file(filename);
 
+    // Preveri ali je datoteka odprta
     if (!file.is_open()) {
+        // Vrne napako v primeru da se datoteka ni odprla
         throw std::runtime_error("Failed to open file: " + filename);
     }
 
+    // Prebere vse podatke iz datoteke
     std::stringstream buffer;
     buffer << file.rdbuf();
+
+    // Zapre datoteko
     file.close();
 
+    // Vrne podatke v string formatu
     return buffer.str();
 }
 
@@ -25,9 +35,9 @@ void run() {
     Program program = parser->produceAST(input);
     Statement* stmt = dynamic_cast<Statement*>(&program);
     RuntimeValue* result = evaluate(stmt, env);
-    std::cout << "The program has finished. Press ENTER key to exit...";
+    std::cout << "Program se je koncal. Pritisnite tipko ENTER za izhod...";
     std::cin.get();
-    std::cout << "Bye";
+    std::cout << "Nasvidenje";
 }
 
 void slopp() {
@@ -68,4 +78,5 @@ void slopp() {
 int main() {
    // Total lines of code in .cpp and .h files: 1862
    run();
+   return 0;
 }

@@ -14,6 +14,7 @@ RuntimeValue* evaluateFunctionDeclaration(FunctionDeclaration* declaration, Envi
 RuntimeValue* evaluateAssignment(AssignmentExpression* node, Environment* env);
 RuntimeValue* evaluateObject(ObjectLiteral* obj, Environment* env);
 RuntimeValue* evaluateCallExpression(CallExpression* obj, Environment* env);
+RuntimeValue* evaluateMemberExpression(Environment* env, AssignmentExpression* node, MemberExpression* expr);
 RuntimeValue* evaluateIfStatement(IfStatement* ifStmt, Environment* env);
 RuntimeValue* evaluateBody(std::vector<Statement*> body, Environment* env, bool newEnv = true);
 RuntimeValue* compare(RuntimeValue* lhs, RuntimeValue* rhs, bool strict);
