@@ -76,7 +76,7 @@ void slopp() {
 }
 
 int main() {
-   // Total lines of code in .cpp and .h files: 1862
+   // Total lines of code in .cpp and .h files: 2757
    run();
    return 0;
 }
